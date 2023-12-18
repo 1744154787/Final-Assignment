@@ -10,7 +10,7 @@ public class CharacterMovement : MonoBehaviour
     public float maxRotationSpeed = 360f; // 角色的旋转速度的最大值
 
     private bool isLeftFootPivot = false; // 是否以左脚为轴旋转
-    private float rotationAngle = 0f; // 当前的旋转角度
+    [SerializeField]private float rotationAngle = 0f; // 当前的旋转角度
     public float RotationAngle
     {
         get { return rotationAngle; }
@@ -25,7 +25,7 @@ public class CharacterMovement : MonoBehaviour
         if (horizontalInput != 0)
         {
             // 计算旋转角度，根据按键的方向和时间，限制在最大值范围内
-            rotationAngle += Mathf.Clamp(horizontalInput * rotationSpeed * Time.deltaTime, -maxRotationSpeed, maxRotationSpeed);
+            rotationAngle += Mathf.Clamp((horizontalInput) * rotationSpeed * Time.deltaTime, -maxRotationSpeed, maxRotationSpeed);
 
             // 选择旋转的轴，根据当前的状态
             Transform pivot = isLeftFootPivot ? leftFoot : rightFoot;

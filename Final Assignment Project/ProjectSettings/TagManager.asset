@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bottle
+  - Feet
   layers:
   - Default
   - TransparentFX

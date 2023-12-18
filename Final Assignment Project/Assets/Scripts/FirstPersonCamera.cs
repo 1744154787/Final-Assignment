@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class FirstPersonCamera : MonoBehaviour
 {
+    public Vector3 camBioa;
     public float sensitivityX = 15f; // 摄像机水平旋转的速度
     public float sensitivityY = 15f; // 摄像机垂直旋转的速度
     //public float minimumX = -360f; // 摄像机水平旋转的最小角度
@@ -38,6 +39,6 @@ public class FirstPersonCamera : MonoBehaviour
         transform.localRotation = cameraRotation;
 
         // 设置摄像机的位置，根据角色的位置，假设摄像机的位置偏移量是(0, 1, 0)
-        transform.position = player.transform.position + new Vector3(0, 1, 0);
+        transform.position = player.transform.position + camBioa;
     }
 }

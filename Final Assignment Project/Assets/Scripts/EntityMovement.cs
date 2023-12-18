@@ -22,10 +22,12 @@ public class EntityMovement : MonoBehaviour
                 Vector3 direction = (transform.position - collision.transform.position).normalized;
 
                 // 计算被踢的力，根据被踢的方向，被踢的力的大小，和角色旋转的时间
-                Vector3 force = direction * kickForce * (1 + character.RotationAngle * kickFactor);
+                Vector3 force = direction * kickForce * (1 + Mathf.Abs(character.RotationAngle) * kickFactor);
 
                 // 给实体添加一个冲力，根据被踢的力
                 GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
+
+                Debug.Log("Hit Player" + collision.gameObject.name);
             }
         }
     }
