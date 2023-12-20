@@ -9,11 +9,14 @@ public class EntityMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // 如果碰撞的对象是角色
-        if (collision.gameObject.CompareTag("Player"))
+        // 获取碰撞对象的layer
+        int layer = collision.gameObject.layer; // 修改
+
+        // 如果碰撞的对象的layer是“Feet”
+        if (layer == LayerMask.NameToLayer("Feet")) // 修改
         {
             // 获取角色的脚本组件
-            CharacterMovement character = collision.gameObject.GetComponent<CharacterMovement>();
+            CharacterMovement character = collision.collider.GetComponentInParent<CharacterMovement>(); // 修改
 
             // 如果角色的脚本组件存在
             if (character != null)
@@ -27,7 +30,7 @@ public class EntityMovement : MonoBehaviour
                 // 给实体添加一个冲力，根据被踢的力
                 GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
 
-                Debug.Log("Hit Player" + collision.gameObject.name);
+                Debug.Log("Hit Player" + collision.collider.name); // 修改
             }
         }
     }
