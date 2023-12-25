@@ -17,6 +17,7 @@ public class SpecialFloor : MonoBehaviour
 
     // 用于存储已生成的地板的列表
     private List<GameObject> floorTiles;
+    public Dictionary<int, GameObject> floorTilesDic = new Dictionary<int, GameObject>();
 
     // 在开始时初始化列表
     private void Start()
