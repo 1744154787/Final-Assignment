@@ -16,13 +16,16 @@ public class SpecialFloor : MonoBehaviour
     public float floorTileRange;
 
     // 用于存储已生成的地板的列表
-    private List<GameObject> floorTiles;
-    public Dictionary<int, GameObject> floorTilesDic = new Dictionary<int, GameObject>();
+    //private List<GameObject> floorTiles;
+    public static Dictionary<int, GameObject> floorTilesDic = new Dictionary<int, GameObject>();
+
+    private int key = 0;
 
     // 在开始时初始化列表
     private void Start()
     {
-        floorTiles = new List<GameObject>();
+        //floorTiles = new List<GameObject>();
+        floorTilesDic = new Dictionary<int, GameObject>(); // 添加这一行
     }
 
     // 在每一帧中检测是否有物品在特殊地板上，并根据物品的位置生成或移动地板
@@ -58,60 +61,67 @@ public class SpecialFloor : MonoBehaviour
     }
 
     // 根据物品的位置生成或移动地板的方法
-    private void GenerateFloorTiles(List<GameObject> bottles)
+private void GenerateFloorTiles(List<GameObject> bottles)
+{
+    // 计算每个方向上需要生成的地板的数量
+    int xCount = Mathf.CeilToInt(floorTileRange / floorTileSize.x);
+    int zCount = Mathf.CeilToInt(floorTileRange / floorTileSize.z);
+
+    // 计算每个方向上生成地板的偏移量
+    float xOffset = floorTileSize.x / 2;
+    float zOffset = floorTileSize.z / 2;
+
+    // 遍历所有的物品
+    foreach (GameObject bottle in bottles)
     {
-        // 计算每个方向上需要生成的地板的数量
-        int xCount = Mathf.CeilToInt(floorTileRange / floorTileSize.x);
-        int zCount = Mathf.CeilToInt(floorTileRange / floorTileSize.z);
+        // 获取物品的位置
+        Vector3 bottlePos = bottle.transform.position;
 
-        // 计算每个方向上生成地板的偏移量
-        float xOffset = floorTileSize.x / 2;
-        float zOffset = floorTileSize.z / 2;
-
-        // 遍历所有的物品
-        foreach (GameObject bottle in bottles)
+        // 以物品为中心，遍历每个方向上的地板
+        for (int x = -xCount; x <= xCount; x++)
         {
-            // 获取物品的位置
-            Vector3 bottlePos = bottle.transform.position;
-
-            // 以物品为中心，遍历每个方向上的地板
-            for (int x = -xCount; x <= xCount; x++)
+            for (int z = -zCount; z <= zCount; z++)
             {
-                for (int z = -zCount; z <= zCount; z++)
-                {
-                    // 计算地板的位置，保持与特殊地板的顶面齐平
-                    Vector3 tilePos = new Vector3(bottlePos.x + x * floorTileSize.x + xOffset, transform.position.y - 0.01f, bottlePos.z + z * floorTileSize.z + zOffset);
+                // 计算地板的位置，保持与特殊地板的顶面齐平
+                Vector3 tilePos = new Vector3(bottlePos.x + x * floorTileSize.x + xOffset, transform.position.y - 0.01f, bottlePos.z + z * floorTileSize.z + zOffset);
 
-                    // 检查是否已经有地板在该位置，如果没有，就生成一个新的地板，并将其添加到列表中a
-                    if (!HasFloorTileAt(tilePos))
+                // 检查是否已经有地板在该位置，如果没有，就生成一个新的地板，并将其添加到字典中
+                if (!HasFloorTileAt(tilePos))
+                {
+                    // 计算地板与物品的距离，如果小于半径，就生成地板
+                    float distance = Vector3.Distance(tilePos, bottlePos);
+                    if (distance < floorTileRange)
                     {
-                        // 计算地板与物品的距离，如果小于半径，就生成地板
-                        float distance = Vector3.Distance(tilePos, bottlePos);
-                        if (distance < floorTileRange)
+                        // 检查是否已经有地板与该位置相邻，如果没有，就生成地板
+                        if (!HasFloorTileAdjacentTo(tilePos))
                         {
-                            // 检查是否已经有地板与该位置相邻，如果没有，就生成地板
-                            if (!HasFloorTileAdjacentTo(tilePos))
-                            {
-                                GameObject tile = Instantiate(floorTilePrefab, tilePos, Quaternion.identity);
-                                floorTiles.Add(tile);
+                            GameObject tile = Instantiate(floorTilePrefab, tilePos, Quaternion.identity);
+                                Destroy(tile, 10f);
+                                // floorTiles.Add(tile); // 注释掉这一行
+                                floorTilesDic.Add(key, tile);  // 添加这一行
+                                key++;
                             }
-                        }
                     }
                 }
             }
         }
     }
+}
 
     // 检查是否已经有地板在指定的位置的方法
     private bool HasFloorTileAt(Vector3 position)
     {
         // 遍历已生成的地板列表
-        foreach (GameObject tile in floorTiles)
+        foreach (GameObject tile in floorTilesDic.Values)
         {
-            // 如果地板的位置与指定的位置相差小于一个很小的值，就返回true
-            if (Vector3.Distance(tile.transform.position, position) < 0.27f)
+            // 如果地板对象不为 null，也就是还存在
+            if (tile != null)
             {
-                return true;
+                // 如果地板的位置与指定的位置相差小于一个很小的值，就返回true
+                if (Vector3.Distance(tile.transform.position, position) < 0.27f)
+                {
+                    return true;
+                }
             }
         }
 
@@ -123,16 +133,19 @@ public class SpecialFloor : MonoBehaviour
     private bool HasFloorTileAdjacentTo(Vector3 position)
     {
         // 遍历已生成的地板列表
-        foreach (GameObject tile in floorTiles)
+        foreach (GameObject tile in floorTilesDic.Values)
         {
-            // 如果地板的位置与指定的位置在x或z方向上相差等于预制件的大小，就返回true
-            if (Mathf.Abs(tile.transform.position.x - position.x) == floorTileSize.x && tile.transform.position.z == position.z)
+            if (tile != null)
             {
-                return true;
-            }
-            if (Mathf.Abs(tile.transform.position.z - position.z) == floorTileSize.z && tile.transform.position.x == position.x)
-            {
-                return true;
+                // 如果地板的位置与指定的位置在x或z方向上相差等于预制件的大小，就返回true
+                if (Mathf.Abs(tile.transform.position.x - position.x) == floorTileSize.x && tile.transform.position.z == position.z)
+                {
+                    return true;
+                }
+                if (Mathf.Abs(tile.transform.position.z - position.z) == floorTileSize.z && tile.transform.position.x == position.x)
+                {
+                    return true;
+                }
             }
         }
 
@@ -140,17 +153,5 @@ public class SpecialFloor : MonoBehaviour
         return false;
     }
 
-    // 清空已生成的地板列表的方法
-    private void ClearFloorTiles()
-    {
-        // 遍历已生成的地板列表
-        foreach (GameObject tile in floorTiles)
-        {
-            // 销毁每个地板
-            Destroy(tile);
-        }
-
-        // 清空列表
-        floorTiles.Clear();
-    }
+    
 }
