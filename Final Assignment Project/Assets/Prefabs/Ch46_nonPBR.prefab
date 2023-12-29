@@ -313,8 +313,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftFoot: {fileID: 7419550453046826356}
   rightFoot: {fileID: 1658073792282358642}
-  rotationSpeed: 1.5
-  maxRotationSpeed: 5
+  rotationSpeed: 7.64
+  maxRotationSpeed: 6.4
   rotationAngle: 0
 --- !u!114 &8811929455548630022
 MonoBehaviour:
