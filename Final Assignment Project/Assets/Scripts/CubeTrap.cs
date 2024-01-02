@@ -54,7 +54,7 @@ public class CubeTrap : MonoBehaviour
                     Vector3 targetPosition = initialPosition + moveDirection.normalized * moveDistance;
 
                     // 让正方体平滑地移动到目标位置，根据一个固定的速度
-                    transform.position = Vector3.MoveTowards(transform.position, targetPosition, 5f * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, targetPosition, 6f * Time.deltaTime);
                 }
                 else
                 {
@@ -89,6 +89,46 @@ public class CubeTrap : MonoBehaviour
                     lastChangeTime = Time.time;
                 }
                 break;
+        }
+    }
+
+    // 当正方体碰撞到其他物体时，调用这个函数
+    private void OnCollisionEnter(Collision collision)
+    {
+        // 如果正方体的运动状态是向前移动
+        if (moveState == 1)
+        {
+            // 获取碰撞物体的layer
+            int layer = collision.gameObject.layer;
+
+            // 如果layer是“Player”或“Bottle”
+            if (layer == LayerMask.NameToLayer("Player") || layer == LayerMask.NameToLayer("Bottle"))
+            {
+                // 获取碰撞物体的刚体组件
+                Rigidbody otherRigidbody = collision.gameObject.GetComponent<Rigidbody>();
+
+                // 如果碰撞物体有刚体组件
+                if (otherRigidbody != null)
+                {
+                    // 获取正方体的刚体组件
+                    Rigidbody rigidbody = GetComponent<Rigidbody>();
+
+                    // 计算碰撞点的法线方向
+                    Vector3 normal = collision.contacts[0].normal;
+
+                    // 计算反弹的方向，根据碰撞点的法线和正方体的移动方向
+                    Vector3 bounceDirection = Vector3.Reflect(moveDirection, normal);
+
+                    // 定义一个冲击力的大小
+                    float impulseForce = 10f;
+
+                    // 给正方体施加一个冲击力，使它反弹
+                    //rigidbody.AddForce(bounceDirection * impulseForce, ForceMode.Impulse);
+
+                    // 给碰撞物体施加一个冲击力，使它也反弹
+                    otherRigidbody.AddForce(-bounceDirection * impulseForce, ForceMode.Impulse);
+                }
+            }
         }
     }
 }

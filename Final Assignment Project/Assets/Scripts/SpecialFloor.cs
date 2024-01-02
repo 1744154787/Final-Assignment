@@ -77,13 +77,15 @@ private void GenerateFloorTiles(List<GameObject> bottles)
         // 获取物品的位置
         Vector3 bottlePos = bottle.transform.position;
 
+
+
         // 以物品为中心，遍历每个方向上的地板
         for (int x = -xCount; x <= xCount; x++)
         {
             for (int z = -zCount; z <= zCount; z++)
             {
                 // 计算地板的位置，保持与特殊地板的顶面齐平
-                Vector3 tilePos = new Vector3(bottlePos.x + x * floorTileSize.x + xOffset, transform.position.y - 0.01f, bottlePos.z + z * floorTileSize.z + zOffset);
+                Vector3 tilePos = new Vector3(bottlePos.x - ( bottlePos.x % 0.3f ) + x * floorTileSize.x + xOffset, transform.position.y - 0.01f, bottlePos.z - (bottlePos.z % 0.3f) + z * floorTileSize.z + zOffset);
 
                 // 检查是否已经有地板在该位置，如果没有，就生成一个新的地板，并将其添加到字典中
                 if (!HasFloorTileAt(tilePos))
@@ -96,7 +98,7 @@ private void GenerateFloorTiles(List<GameObject> bottles)
                         if (!HasFloorTileAdjacentTo(tilePos))
                         {
                             GameObject tile = Instantiate(floorTilePrefab, tilePos, Quaternion.identity);
-                                Destroy(tile, 10f);
+                                Destroy(tile, 30f);
                                 // floorTiles.Add(tile); // 注释掉这一行
                                 floorTilesDic.Add(key, tile);  // 添加这一行
                                 key++;

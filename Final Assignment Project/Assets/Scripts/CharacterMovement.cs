@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.UI;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -8,9 +9,12 @@ public class CharacterMovement : MonoBehaviour
     public Transform rightFoot; // 角色的右脚子对象
     public float rotationSpeed = 180f; // 角色的旋转速度
     public float maxRotationSpeed = 360f; // 角色的旋转速度的最大值
+    public GameObject leftFootUI; // 左脚UI对象
+    public GameObject rightFootUI; // 右脚UI对象
 
     private bool isLeftFootPivot = false; // 是否以左脚为轴旋转
     [SerializeField] private float rotationAngle = 0f; // 当前的旋转角度
+    
     public float RotationAngle
     {
         get { return rotationAngle; }
@@ -33,6 +37,18 @@ public class CharacterMovement : MonoBehaviour
             isLeftFootPivot = !isLeftFootPivot;
             rotationAngle = 0f;
         }
+        // 如果以左脚为轴旋转，显示左脚UI，隐藏右脚UI
+        if (isLeftFootPivot)
+        {
+            leftFootUI.SetActive(false);
+            rightFootUI.SetActive(true);
+        }
+        // 如果以右脚为轴旋转，显示右脚UI，隐藏左脚UI
+        else
+        {
+            leftFootUI.SetActive(true);
+            rightFootUI.SetActive(false);
+        }
 
         // 选择旋转的轴，根据当前的状态
         Transform pivot = isLeftFootPivot ? leftFoot : rightFoot;
@@ -42,5 +58,6 @@ public class CharacterMovement : MonoBehaviour
         move = transform.TransformDirection(move);
         transform.RotateAround(pivot.position, Vector3.up, rotationAngle);
     }
+    
 
 }
