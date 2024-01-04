@@ -14,6 +14,7 @@ public class CharacterMovement : MonoBehaviour
 
     private bool isLeftFootPivot = false; // 是否以左脚为轴旋转
     [SerializeField] private float rotationAngle = 0f; // 当前的旋转角度
+    private float foreFrameInput;
     
     public float RotationAngle
     {
@@ -24,6 +25,7 @@ public class CharacterMovement : MonoBehaviour
     {
         // 获取玩家的输入
         float horizontalInput = Input.GetAxisRaw("Horizontal");
+        //Debug.Log(horizontalInput);
 
         // 如果玩家按下A或D键，开始旋转
         if (horizontalInput != 0)
@@ -32,10 +34,11 @@ public class CharacterMovement : MonoBehaviour
             rotationAngle += Mathf.Clamp((horizontalInput) * rotationSpeed * Time.deltaTime, -maxRotationSpeed, maxRotationSpeed);
         }
         // 如果玩家松开A或D键，停止旋转，切换旋转的轴，重置旋转角度
-        else if (rotationAngle != 0)
+        if ((horizontalInput==0 && rotationAngle!=0) || (horizontalInput * foreFrameInput) <0)
         {
             isLeftFootPivot = !isLeftFootPivot;
             rotationAngle = 0f;
+            Debug.Log("Change Feet!");
         }
         // 如果以左脚为轴旋转，显示左脚UI，隐藏右脚UI
         if (isLeftFootPivot)
@@ -57,7 +60,8 @@ public class CharacterMovement : MonoBehaviour
         Vector3 move = new Vector3(0, 0, Input.GetAxisRaw("Vertical") * Time.deltaTime);
         move = transform.TransformDirection(move);
         transform.RotateAround(pivot.position, Vector3.up, rotationAngle);
+
+        foreFrameInput = horizontalInput;
     }
-    
 
 }

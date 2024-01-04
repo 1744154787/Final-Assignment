@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +14,13 @@ public class GameManager : MonoBehaviour
     public static int score;
     public static int lives;
     public static int level;
+
+    
+
+    // 游戏是否暂停的变量
+    public bool isPaused = false;
+
+    
 
     // 在Awake方法中，检查并初始化GameManager实例
     void Awake()
@@ -34,6 +44,54 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SetFrameRate(60);
+        
+    }
+
+    private void Update()
+    {
+        // 检测玩家是否按下了esc键
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // 调用切换游戏暂停状态的函数
+            TogglePause();
+        }
+    }
+    // 切换游戏暂停状态的函数
+    public void TogglePause()
+    {
+        // 如果游戏是暂停的，就恢复游戏
+        if (isPaused)
+        {
+            // 设置时间流速为1，表示正常速度
+            Time.timeScale = 1;
+            // 设置游戏暂停变量为false
+            isPaused = false;
+            
+        }
+        // 如果游戏是正常的，就暂停游戏
+        else
+        {
+            // 设置时间流速为0，表示停止
+            Time.timeScale = 0;
+            // 设置游戏暂停变量为true
+            isPaused = true;
+            
+        }
+    }
+
+    
+    // 显示返回主菜单按钮的函数
+    public void ShowPauseButton()
+    {
+        // 设置按钮的可见性为true
+       
+    }
+
+    // 隐藏返回主菜单按钮的函数
+    public void HidePauseButton()
+    {
+        // 设置按钮的可见性为false
+        
     }
 
     // 定义一个方法，用来将游戏的帧率设置为指定的值
