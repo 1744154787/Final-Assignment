@@ -673,7 +673,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8972504472916083297}
-  m_Layer: 0
+  - component: {fileID: 164753791779209348}
+  - component: {fileID: 5909639995160334567}
+  m_Layer: 6
   m_Name: DEF-shin.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,6 +699,54 @@ Transform:
   - {fileID: 3454729421791198735}
   m_Father: {fileID: 747472424731027324}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &164753791779209348
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876790818332275274}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0017785524, y: 0.0054453397, z: 0.0016312329}
+  m_Center: {x: 0.000015662597, y: 0.000020409185, z: 0.00025693647}
+--- !u!54 &5909639995160334567
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876790818332275274}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1917150132281649851
 GameObject:
   m_ObjectHideFlags: 0
@@ -1109,7 +1159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftFoot: {fileID: 7304047053342477709}
   rightFoot: {fileID: 574353488734884699}
-  rotationSpeed: 7.6
+  rotationSpeed: 10.13
   maxRotationSpeed: 7.28
   leftFootUI: {fileID: 726807805592075144}
   rightFootUI: {fileID: 227409864033605650}
@@ -2297,7 +2347,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8011187951040726456}
-  m_Layer: 0
+  - component: {fileID: 2120381931099868456}
+  - component: {fileID: 541592876805999077}
+  m_Layer: 6
   m_Name: DEF-shin.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2321,6 +2373,54 @@ Transform:
   - {fileID: 2188222354831154059}
   m_Father: {fileID: 4199843346706400119}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &2120381931099868456
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7142335828812259614}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &541592876805999077
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7142335828812259614}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0017785524, y: 0.0054453397, z: 0.0016312329}
+  m_Center: {x: 0.000015662597, y: 0.000020409185, z: 0.00025693647}
 --- !u!1 &7232480383299995158
 GameObject:
   m_ObjectHideFlags: 0
