@@ -164,7 +164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4790456071413496953
 RectTransform:
   m_ObjectHideFlags: 0
@@ -417,7 +417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5338261585917169461
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1161,8 +1161,6 @@ MonoBehaviour:
   rightFoot: {fileID: 574353488734884699}
   rotationSpeed: 10.13
   maxRotationSpeed: 7.28
-  leftFootUI: {fileID: 726807805592075144}
-  rightFootUI: {fileID: 227409864033605650}
   rotationAngle: 0
 --- !u!114 &4137642695457862311
 MonoBehaviour:

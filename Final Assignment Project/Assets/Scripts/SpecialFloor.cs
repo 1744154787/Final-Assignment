@@ -29,7 +29,7 @@ public class SpecialFloor : MonoBehaviour
     }
 
     // 在每一帧中检测是否有物品在特殊地板上，并根据物品的位置生成或移动地板
-    private void Update()
+    private void FixedUpdate()
     {
         // 获取特殊地板的碰撞体组件
         Collider collider = GetComponent<Collider>();
