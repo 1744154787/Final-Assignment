@@ -7,7 +7,7 @@ public class EntityMovement : MonoBehaviour
     public float kickForce = 10f; // 被踢时受到的力的大小
     public float kickFactor = 0.1f; // 被踢时受到的力的倍数，根据角色旋转的时间
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         // 获取碰撞对象的layer
         int layer = collision.gameObject.layer; // 修改
