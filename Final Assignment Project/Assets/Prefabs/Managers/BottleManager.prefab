@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3222148823950800304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9050525476944414901}
+  - component: {fileID: 2719713061765695404}
+  m_Layer: 7
+  m_Name: BottleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9050525476944414901
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3222148823950800304}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000021855694, y: -0.0000001509958, z: 3.300118e-15, w: 1}
+  m_LocalPosition: {x: 0.58, y: 0.355, z: 5.55}
+  m_LocalScale: {x: 0.63761, y: 0.63761, z: 0.63761}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2719713061765695404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3222148823950800304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2dfee5a24bbcf4cadf6c7fe84589c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bottles:
+  - {fileID: 8275225356812592187, guid: 369e610dbc71024458262357ad81744b, type: 3}
+  - {fileID: 2693414680377813114, guid: af89b75604bbf41488752d2d692c01b1, type: 3}
+  - {fileID: 6335264703099412489, guid: dc56714fded1e934c87957efc16efc24, type: 3}
+  - {fileID: 3427687734007798702, guid: 3b0f3ae845f630a4baee9d89a3f0ee7f, type: 3}
+  - {fileID: 6717291471634142949, guid: 760993827cb3d824cb9f9fbc37da74ec, type: 3}
+  - {fileID: 4477701435706206749, guid: e65b36ea2843de54b80800edfc2cb7c1, type: 3}
+  - {fileID: 5013237347615769163, guid: 8f57bfa4ab9f4804696543b0481a6613, type: 3}
+  - {fileID: 4304059195483949889, guid: dc331313bd965d54a8452f94f19a34a5, type: 3}
+  - {fileID: 7511429980532993277, guid: 153e882a286d5f947be2e94bdfb55500, type: 3}

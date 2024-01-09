@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kickForce: 2.4
   kickFactor: 0.1
+  hitEffectPrefab: {fileID: 8665106364244813500, guid: 84482675cc406ec48a50354c4b038b24, type: 3}
 --- !u!95 &7878483960475450077
 Animator:
   serializedVersion: 5

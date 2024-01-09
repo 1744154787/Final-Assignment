@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3427687734007798702}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6934926, y: -8.8231346e-17, z: 8.4928334e-17, w: 0.72046375}
+  m_LocalRotation: {x: 0.69348985, y: 0, z: 0, w: 0.7204664}
   m_LocalPosition: {x: -1.143, y: 0.113, z: -2.596}
   m_LocalScale: {x: 0.5669, y: 0.5669, z: 0.5669}
   m_ConstrainProportionsScale: 0
@@ -171,3 +171,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kickForce: 2.89
   kickFactor: 0.34
+  hitEffectPrefab: {fileID: 9030004311595735956, guid: 17f79ddcd40147941b8094d223a445d5, type: 3}

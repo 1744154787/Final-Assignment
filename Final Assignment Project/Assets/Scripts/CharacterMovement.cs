@@ -24,7 +24,7 @@ public class CharacterMovement : MonoBehaviour
     {
         // 获取玩家的输入
         float horizontalInput = Input.GetAxisRaw("Horizontal");
-        Debug.Log(horizontalInput);
+        //Debug.Log(horizontalInput);
 
         // 如果玩家按下A键，以右脚为轴顺时针旋转
         if (horizontalInput == -1)
