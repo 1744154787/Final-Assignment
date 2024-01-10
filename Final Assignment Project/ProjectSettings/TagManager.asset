@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bottle
   - Feet
+  - myCamera
   layers:
   - Default
   - TransparentFX

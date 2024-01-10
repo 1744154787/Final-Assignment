@@ -31,37 +31,39 @@ public class SpecialFloor : MonoBehaviour
     // 在每一帧中检测是否有物品在特殊地板上，并根据物品的位置生成或移动地板
     private void FixedUpdate()
     {
-        // 获取特殊地板的碰撞体组件
-        Collider collider = GetComponent<Collider>();
-
-        // 如果没有碰撞体组件，直接返回
-        if (collider == null) return;
-
-        // 获取特殊地板的包围盒
-        Bounds bounds = collider.bounds;
+        // 获取所有子物体的碰撞体组件
+        Collider[] colliders = GetComponentsInChildren<Collider>();
 
         // 用于存储检测到的物品的列表
         List<GameObject> bottles = new List<GameObject>();
 
         // 遍历所有的碰撞体
-        foreach (Collider other in Physics.OverlapBox(bounds.center, bounds.extents))
+        foreach (Collider collider in colliders)
         {
-            // 如果碰撞体的层级是物品的层级，且在特殊地板的上方，就将其添加到物品列表中
-            if (other.gameObject.layer == bottleLayer && other.transform.position.y > bounds.max.y)
+            // 获取碰撞体的包围盒
+            Bounds bounds = collider.bounds;
+
+            // 遍历所有与碰撞体重叠的碰撞体
+            foreach (Collider other in Physics.OverlapBox(bounds.center, bounds.extents))
             {
-                bottles.Add(other.gameObject);
+                // 如果碰撞体的层级是物品的层级，且在特殊地板的上方，就将其添加到物品列表中
+                if (other.gameObject.layer == bottleLayer && other.transform.position.y > bounds.max.y)
+                {
+                    bottles.Add(other.gameObject);
+                }
             }
         }
 
         // 如果没有检测到物品，就清空已生成的地板列表，并返回
-        
+
 
         // 如果检测到物品，就根据物品的位置生成或移动地板
         GenerateFloorTiles(bottles);
     }
 
+
     // 根据物品的位置生成或移动地板的方法
-private void GenerateFloorTiles(List<GameObject> bottles)
+    private void GenerateFloorTiles(List<GameObject> bottles)
 {
     // 计算每个方向上需要生成的地板的数量
     int xCount = Mathf.CeilToInt(floorTileRange / floorTileSize.x);

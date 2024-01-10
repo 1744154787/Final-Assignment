@@ -1143,8 +1143,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.46406865, y: 1.800869, z: 0.37945503}
-  m_Center: {x: -0.01015532, y: 0.95934176, z: 0.054289818}
+  m_Size: {x: 0.9191793, y: 1.800869, z: 0.37945503}
+  m_Center: {x: -0.0014576135, y: 0.95934176, z: 0.054289803}
 --- !u!114 &5505587127611015122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1159,8 +1159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftFoot: {fileID: 7304047053342477709}
   rightFoot: {fileID: 574353488734884699}
-  rotationSpeed: 10.13
-  maxRotationSpeed: 7.28
+  rotationSpeed: 18.49
+  maxRotationSpeed: 11.74
   rotationAngle: 0
 --- !u!114 &4137642695457862311
 MonoBehaviour:
@@ -1214,7 +1214,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!1 &3425315416971335766
 GameObject:
   m_ObjectHideFlags: 0
